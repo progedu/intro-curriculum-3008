@@ -29,15 +29,15 @@ module.exports = (robot) => {
 		if (taskList.length === 0) {
 			msg.send('(TODOはありません)');
 		} else{
-			msg.send(todo.list().join('\n'));
+			msg.send(taskList.join('\n'));
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
 		const doneList = todo.donelist();
-		if (todo.length === 0) {
+		if (doneList.length === 0) {
 			msg.send('(完了したTODOはありません)')
 		} else{
-			msg.send(todo.donelist().join('\n'));
+			msg.send(doneList.join('\n'));
 		}
 	});
 };
