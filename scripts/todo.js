@@ -31,18 +31,18 @@ module.exports = (robot) => {
 	robot.respond(/list/i, (msg) => {
 		const list = todo.list(); //list配列を取得する
 		if (list.length === 0) {
-			msg.send('まだ予定は無いニャ');
+			msg.send('予定はまだ無いニャ :thinking_face:');
 		} else {
-		  msg.send(todo.list().join('\n'));
+		  msg.send(list.join('\n'));
 	}
 	});
 
 	robot.respond(/donelist/i, (msg) => {
 		const donelist = todo.donelist(); //donelist配列を取得する
 		if (donelist.length === 0) {
-			msg.send('完了した予定はまだ無いニャ');
+			msg.send('完了した予定はまだ無いニャ :disappointed_relieved:');
 		} else {
-		  msg.send(todo.donelist().join('\n'));
+		  msg.send(donelist.join('\n'));
 	}
 	});
 };
