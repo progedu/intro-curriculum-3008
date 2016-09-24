@@ -9,25 +9,40 @@
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
+
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send('追加しましたニャ: ' + task);
 	});
+
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		msg.send('完了にしましたニャ: ' + task);
 	});
+
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
-		msg.send('削除しました: ' + task);
+		msg.send('削除しましたニャ: ' + task);
 	});
+
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list(); //list配列を取得する
+		if (list.length === 0) {
+			msg.send('まだ予定は無いニャ');
+		} else {
+		  msg.send(todo.list().join('\n'));
+	}
 	});
+
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist(); //donelist配列を取得する
+		if (donelist.length === 0) {
+			msg.send('完了した予定はまだ無いニャ');
+		} else {
+		  msg.send(todo.donelist().join('\n'));
+	}
 	});
 };
