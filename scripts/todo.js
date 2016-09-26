@@ -7,8 +7,8 @@
 //   ボット名 list     - TODO の一覧表示
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
-const request = require('request');
-const todo = require('todo');
+const request = require('request');			// $ npm install require
+const todo = require('todo');					// $ npm install ../todo
 
 /*	引数の値が整数かどうかを判定する関数
 *	@param {number} x
@@ -48,6 +48,11 @@ module.exports = (robot) => {
 		else 
 			msg.send('(完了した TODO はありません)');
 	});
+	
+	/** > ${bot-name} nicorank	[int]		と入力すると、ニコニコ動画ランキング(100)を返してくれる
+	*	[int]：任意だが、引数として 1~100 の半角数を付けると、1からその数までリストを絞ることができる
+	*	使用例）> hubot-todo nicorank 30
+	*/
 	robot.respond(/nicorank( +.*)?/i, (msg) => {
 		let rank = msg.match[1];
 		if (rank !== undefined) rank = rank.trim();
