@@ -12,22 +12,32 @@ module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send('提督、作戦を実施してください。: ' + task);
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		msg.send('提督、作戦、成功しました。流石です。: ' + task);
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
-		msg.send('削除しました: ' + task);
+		msg.send('カーンカーン、解体しました。: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const tasklist = todo.list();
+		if (tasklist.length === 0) {
+			msg.send('エラー ４０４ Ｎｏｔ Ｆｏｕｎｄ　現在、なすべき作戦は、存在しません。');
+		} else {
+			msg.send(tasklist.join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('エラー ４０４ Ｎｏｔ Ｆｏｕｎｄ　現在、達成された作戦は、存在しません。');
+		} else {
+		msg.send(donelist.join('\n'));
+		}
 	});
 };
