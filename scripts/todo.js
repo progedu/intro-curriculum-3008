@@ -33,7 +33,7 @@ module.exports = (robot) => {
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-const taskList = todo.donelist().join('\n');
+		const taskList = todo.donelist().join('\n');
 		if (taskList) {
 			msg.send(taskList);
 		} else {
