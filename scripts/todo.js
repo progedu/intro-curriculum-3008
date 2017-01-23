@@ -29,7 +29,7 @@ module.exports = (robot) => {
 		if(tasklist.length === 0) {
 			msg.send('(TODOはありません)');
 		}else{			
-			msg.send(todo.list().join('\n'));
+			msg.send(tasklist.join('\n'));
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
@@ -37,7 +37,7 @@ module.exports = (robot) => {
 		if(taskdonelist.length === 0) {
 			msg.send('(完了したTODOはありません)');			
 		}else{
-			msg.send(todo.donelist().join('\n'));			
+			msg.send(taskdonelist.join('\n'));			
 		}
 	});
 };
