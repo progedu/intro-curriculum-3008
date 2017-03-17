@@ -26,8 +26,20 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		msg.send(todo.list().join('\n'));
+		//こっから
+		if(todo.list().length === 0){//listは配列型
+			msg.send('todoはありません');
+
+		}
+		//ここまで
 	});
 	robot.respond(/donelist/i, (msg) => {
 		msg.send(todo.donelist().join('\n'));
+		//こっから
+		if(todo.donelist().length === 0){//listは配列型
+			msg.send('doneはありません');
+
+		}
+		//ここまで
 	});
 };
