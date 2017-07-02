@@ -25,9 +25,37 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+			const taskList = todo.list();
+			if (taskList.length === 0) {
+					msg.send('タスクはありません');
+			} else {
+					msg.send(taskList.join('\n'));
+			}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+			const doneList = todo.donelist();
+			if (doneList.length === 0) {
+					msg.send('完了したタスクはありません');
+			}else{
+					msg.send(doneList.join('\n'));
+			}    
 	});
+	// robot.respond(/list/i, (msg) => {
+	// 	const taskList = todo.list();
+	// 	if (taskList.length === 0){
+	// 		msg.send('TODOはありません');
+	// 	} else {
+	// 		//msg.send(todo.list().join('\n'));
+	// 		msg.send(taskList.join('\n'));
+	// 	}
+	// });
+	// robot.respond(/donelist/i, (msg) => {
+	// 	const doneList = donelist.list();
+	// 	if (doneList.length === 0){
+	// 		msg.send('完了したTODOはありません');
+	// 	} else {
+	// 	// msg.send(todo.donelist().join('\n'));
+	// 		msg.send(doneList.join('\n'));
+	// 	}
+	// });
 };
