@@ -14,20 +14,29 @@ module.exports = (robot) => {
 		todo.todo(task);
 		msg.send('追加しました: ' + task);
 	});
+
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
 		msg.send('完了にしました: ' + task);
 	});
+
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
 		msg.send('削除しました: ' + task);
 	});
+
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		let result = todo.list().join('\n');
+		if(result === '') result = '(TODOは空です。)';
+		msg.send(result);
 	});
+
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		let result = todo.donelist().join('\n');
+		if(result === '') result = '(完了したTODOは空です。)';
+		msg.send(result);
 	});
+
 };
