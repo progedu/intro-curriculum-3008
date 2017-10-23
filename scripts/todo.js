@@ -8,6 +8,29 @@
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
 const todo = require('todo');
+
+/**
+ * リストの名前と長さに応じてメッセージを返す
+ * @param {string} f 関数名
+ * @return {string}
+ */
+function getMsg(f) {
+  const arr = f();
+  const len = arr.length;
+  const emptyMsg = 'TODOはありません';
+  let msg = emptyMsg;
+
+  if (len >= 1) {
+    msg = arr.join('\n');
+  } else {
+    if (f.name == 'donelist') {
+      msg = `完了した${emptyMsg}`;
+    }
+  }
+
+  return msg;
+}
+
 module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
@@ -25,9 +48,9 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		msg.send(getMsg(todo.list));
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		msg.send(getMsg(todo.donelist));
 	});
 };
