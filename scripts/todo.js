@@ -18,6 +18,9 @@ module.exports = (robot) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
 		msg.send('完了にしました: ' + task);
+		if (todo.done().length === 0) {
+			msg.send('(完了にしたTODOはありません)')
+		}
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
@@ -26,6 +29,9 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		msg.send(todo.list().join('\n'));
+		if (todo.list().length === 0 ) {
+			msg.send('(TODOはありません)');
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
 		msg.send(todo.donelist().join('\n'));
