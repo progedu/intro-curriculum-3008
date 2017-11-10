@@ -33,12 +33,6 @@ module.exports = (robot) => {
 		}
 	});
 
-	/*
-	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
-	});
-	*/
-	
 	robot.respond(/donelist/i, (msg) => {
 		if(!todo) {
 			msg.send(todo.donelist().join('\n'));
@@ -47,9 +41,4 @@ module.exports = (robot) => {
 		}
 	});
 
-	/*
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
-	});
-	*/
 };
