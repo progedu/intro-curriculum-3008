@@ -26,8 +26,16 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		msg.send(todo.list().join('\n'));
+		// ない場合に'TODOはありません'と発言
+		if (todo.list() == ''){
+			msg.send('TODO はありません');
+		};
 	});
 	robot.respond(/donelist/i, (msg) => {
 		msg.send(todo.donelist().join('\n'));
+		// ない場合に'完了したTODOはありません'と発言
+		if (todo.donelist() == ''){
+			msg.send('完了した TODO はありません');
+		};
 	});
 };
