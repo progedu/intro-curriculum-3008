@@ -26,14 +26,14 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		if (todo.list().length === 0) {
-			msg.send('TODO はありません');
+			msg.send('(TODO はありません)');
 		} else {
 			msg.send(todo.list().join('\n'));
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
 		if (todo.donelist().length === 0) {
-			msg.send('完了した TODO はありません');
+			msg.send('(完了した TODO はありません)');
 		} else {
 			msg.send(todo.donelist().join('\n'));
 		}
