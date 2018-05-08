@@ -25,9 +25,21 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+	// todo.list()関数を定数listに代入し、何度も呼び出さないようにしている理由は、
+	// 非常に重い処理である可能性(タスクが膨大にある可能性)を考慮したため
+		const list = todo.list();
+		if (list.length === 0) {
+			msg.send('(TODOはありません)');
+		} else {
+			msg.send(list.join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('(完了したTODOはありません)');
+		} else {
+			msg.send(donelist.join('\n'));
+		}
 	});
 };
