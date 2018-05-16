@@ -12,7 +12,7 @@ module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send('追加しましたn: ' + task);
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
@@ -25,9 +25,17 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		if (todo.list.length === 0) {
+			msg.send('TODOはありません。');
+		}else{
+		 msg.send(todo.list().join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
+		if (todo.donelist.length === 0) {
+			msg.send('完了したTODOはありません。');
+		}
 		msg.send(todo.donelist().join('\n'));
 	});
+	
 };
