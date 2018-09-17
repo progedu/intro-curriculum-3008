@@ -38,6 +38,6 @@ module.exports = (robot) => {
 			msg.send('(完了したTODOはありません)');
 		} else {
 			msg.send(donelist.join('\n'));
-	}
+    }
 	});
 };
