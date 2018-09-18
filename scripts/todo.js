@@ -25,9 +25,20 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list();//いったん変数に入れるのは、todo.list()処理が重い場合を想定している
+		if (list.length === 0) {//配列が空がどうかのチェックには、データ長を見る
+			msg.send('(TODOはありません)');
+		} else {
+			msg.send(list.join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const list = todo.donelist();
+		if (list.length === 0){
+			msg.send('(完了したTODOはありません)');
+		} else {
+			msg.send(list.join('\n'));
+		}
 	});
 };
+
