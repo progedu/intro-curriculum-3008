@@ -24,10 +24,29 @@ module.exports = (robot) => {
 		todo.del(task);
 		msg.send('削除しました: ' + task);
 	});
+	// robot.respond(/list/i, (msg) => {
+	// 	if (msg !== null) {
+	// 		msg.send(todo.list().join('\n'));
+	// 	}
+	// 	else {
+	// 		msg.send('(TODOはありません)');
+	// 	}
+	// });
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
-	});
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
-	});
+		// list関数の配列を取得し変数に格納
+        const list = todo.list();
+        if (list.length === 0) {
+            msg.send('(TODOはありません)');
+        } else {
+            msg.send(list.join('\n'));
+        }
+    });
+    robot.respond(/donelist/i, (msg) => {
+        const donelist = todo.donelist();
+        if (donelist.length === 0) {
+            msg.send('(完了したTODOはありません)');
+        } else {
+            msg.send(donelist.join('\n'));
+        }
+    });
 };
