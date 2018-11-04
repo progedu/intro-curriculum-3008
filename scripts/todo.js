@@ -27,7 +27,7 @@ module.exports = (robot) => {
 	robot.respond(/list/i, (msg) => {
                 const list  = todo.list();
                 if(list.length === 0){
-                    console.log('TODOはありません');
+                    msg.send('TODOはありません');
                 }else{
                     msg.send(todo.list().join('\n'));   
                 }
@@ -35,7 +35,7 @@ module.exports = (robot) => {
 	robot.respond(/donelist/i, (msg) => {
                 const donelist = todo.donelist();
                 if(list.length === 0){
-                    console.log('完了したTODOはありません');
+                    msg.send('完了したTODOはありません');
                 }else{
 		    msg.send(todo.donelist().join('\n'));
                 }
