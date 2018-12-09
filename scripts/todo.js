@@ -7,6 +7,14 @@
 //   ボット名 list     - TODO の一覧表示
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
+/**
+ * 実装した、hubot-todo の list コマンドと donelist コマンドは、
+ * それぞれの一覧が空であるときに何も発言しません。
+ * これを空であるときは、
+(TODOはありません)
+(完了したTODOはありません)
+とボットが発言するように修正してみましょう。
+ */
 const todo = require('todo');
 module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
@@ -25,9 +33,19 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list();
+		if (list.length === 0) {
+			msg.send('TODOはありません');
+		} else {
+			msg.send(todo.list().join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('完了したタスクはありません');
+		} else {
+			msg.send(todo.donelist().join('\n'));
+		}
 	});
 };
