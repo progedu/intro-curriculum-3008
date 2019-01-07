@@ -28,7 +28,7 @@ module.exports = (robot) => {
 	robot.respond(/list/i, (msg) => {
 		const llist = todo.list();
 		if (llist.length === 0){
-			msg.send('Todo list はありません。');
+			msg.send('Todolist はありません。');
 		}else{
 			msg.send(todo.list().join('\n'));
 		}
@@ -37,7 +37,7 @@ module.exports = (robot) => {
 	robot.respond(/donelist/i, (msg) => {
 		const ddonelist = todo.donelist();
 		if (ddonelist.length === 0){
-			msg.send('Done listはありません')
+			msg.send('Donelistはありません')
 		}else{
 			msg.send(todo.donelist().join('\n'));
 		}
