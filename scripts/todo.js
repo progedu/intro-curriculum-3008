@@ -37,4 +37,5 @@ module.exports = (robot) => {
     } else {
       msg.send(todo.donelist().join('\n'));
     }
+  });
 };
