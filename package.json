@@ -5,6 +5,7 @@
   "author": "Soichiro-Yoshimura <soichiro_yoshimura@dwango.co.jp>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+
     "hubot": "^3.1.1",
     "hubot-diagnostics": "^1.0.0",
     "hubot-google-images": "^0.2.7",
