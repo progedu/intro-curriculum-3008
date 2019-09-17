@@ -25,9 +25,19 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
+		const list = todo.list();
+		if (list.length === 0) {
+			msg.send('(We are FREE;D)');
+		}else{
 		msg.send(todo.list().join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('(We are not FREExq)')
+		} else {
 		msg.send(todo.donelist().join('\n'));
+		}
 	});
 };
