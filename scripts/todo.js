@@ -1,33 +1,46 @@
 // Description:
 //   TODO を管理することができるボットです
 // Commands:
-//   ボット名 todo     - TODO を作成
-//   ボット名 done     - TODO を完了にする
-//   ボット名 del      - TODO を消す
-//   ボット名 list     - TODO の一覧表示
-//   ボット名 donelist - 完了した TODO の一覧表示
+//   ボット名 予定；    - TODO を作成
+//   ボット名 終了；    - TODO を完了にする
+//   ボット名 取消；    - TODO を消す
+//   ボット名 未消化；  - TODO の一覧表示
+//   ボット名 済； 	- 完了した TODO の一覧表示
+
 'use strict';
-const todo = require('todo');
+
+const fnList = require('tdtest');
+
 module.exports = (robot) => {
-	robot.respond(/todo (.+)/i, (msg) => {
+	robot.respond(/予定；(.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.todo(task);
+		fnList.todo(task);
 		msg.send('追加しました: ' + task);
 	});
-	robot.respond(/done (.+)/i, (msg) => {
+	robot.respond(/終了；(.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.done(task);
+		fnList.done(task);
 		msg.send('完了にしました: ' + task);
 	});
-	robot.respond(/del (.+)/i, (msg) => {
+	robot.respond(/取消；(.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.del(task);
+		fnList.del(task);
 		msg.send('削除しました: ' + task);
 	});
-	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+	robot.respond(/未消化；/i, (msg) => {
+		const tdList = fnList.list();
+		if (tdList.length === 0){
+			msg.send('予定はありません');
+		} else {
+			msg.send(tdList.join('\n'));
+		}
 	});
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+	robot.respond(/済；/i, (msg) => {
+		const tddoneList = fnList.donelist();
+		if (tddoneList.length === 0){
+			msg.send('終了した予定はありません');
+		} else {
+		msg.send(tddoneList.join('\n'));
+		}
 	});
 };
