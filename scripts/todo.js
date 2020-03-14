@@ -25,9 +25,13 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		if(todo.list().length > 0){ //こうするよりも、const list = todo.list();で保存して何回も呼び出さない方が良い。
+		msg.send(todo.list().join('\n'));//todo.list()が重い可能性があるため。
+		}else msg.send('(TODOはありません)');
 	});
 	robot.respond(/donelist/i, (msg) => {
+		if(todo.donelist().length > 0){
 		msg.send(todo.donelist().join('\n'));
+		}else msg.send('完了したTODOはありません');
 	});
 };
