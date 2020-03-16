@@ -25,9 +25,37 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		if(todo.list().length === 0){
+			msg.send('(TODOはありません)');
+		}else{
+			msg.send(todo.list().join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		if(todo.donelist().length === 0){
+			msg.send('(完了したTODOはありません)');
+		}else{
+			msg.send(todo.donelist().join('\n'));
+		}
 	});
 };
+
+/**
+ * 模範解答
+ * robot.respond(/list/i, (msg) => {
+    const list = todo.list();　<<<<< 重い処理になる可能性があるため呼び出し回数を減らす
+    if (list.length === 0) {
+      msg.send('(TODOはありません)');
+    } else {
+      msg.send(list.join('\n'));
+    }
+  });
+  robot.respond(/donelist/i, (msg) => {
+    const donelist = todo.donelist();
+    if (donelist.length === 0) {
+      msg.send('(完了したTODOはありません)');
+    } else {
+      msg.send(donelist.join('\n'));
+    }
+  });
+ */
