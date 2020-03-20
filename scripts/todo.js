@@ -25,9 +25,19 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list(); //配列が入った変数
+		if (list.length === 0) { //空の場合ということになる
+			msg.send('未完了のタスクはありません');
+		} else {
+		msg.send(list.join('\n')); //せっかく変数作ったので、それを使っている
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('完了したタスクはありません');
+		} else {
+		msg.send(donelist.join('\n'));
+		}
 	});
 };
