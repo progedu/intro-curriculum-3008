@@ -12,22 +12,33 @@ module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send(`${task} を追加しました。`);
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		msg.send(`${task} を完了にしました。`);
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
-		msg.send('削除しました: ' + task);
+		msg.send(`${task} を削除しました。`);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list();
+		if(list.length === 0) {
+			msg.send(`残っている TODO はありません。`);
+		} else {
+			msg.send(todo.list().join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		const list = todo.list().join(' と ');
+		if (donelist.length === 0) {
+			msg.send(`やり終えた TODO はありません。まだ ${list} が残っています。`);
+		}else {
+			msg.send(todo.donelist().join('\n'));
+		}
 	});
 };
