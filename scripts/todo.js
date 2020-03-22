@@ -12,17 +12,17 @@ module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send(`${task} を追加しました。`);
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		msg.send(`${task} を完了にしました。`);
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
-		msg.send('削除しました: ' + task);
+		msg.send(`${task} を削除しました。`);
 	});
 	robot.respond(/list/i, (msg) => {
 		const list = todo.list();
