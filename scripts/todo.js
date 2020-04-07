@@ -9,25 +9,42 @@
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
+
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
 		msg.send('追加しました: ' + task);
-	});
+  });
+
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
 		msg.send('完了にしました: ' + task);
-	});
+  });
+
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
 		msg.send('削除しました: ' + task);
-	});
+  });
+
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
-	});
+    const toDoList = todo.list();
+    if (toDoList == '') {
+      msg.send('TODOはありません');
+    } else {
+      msg.send(toDoList.join('\n'));
+    }
+  });
+
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
-	});
+    const doneToDoList = todo.donelist();
+    if(doneToDoList == '') {
+      console.log(doneToDoList);
+      msg.send('完了したTODOはありません!!');
+    } else {
+      msg.send(doneToDoList.join('\n'));
+    }
+  });
+
 };
