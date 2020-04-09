@@ -17,9 +17,13 @@
     "hubot-rules": "^0.1.1",
     "hubot-scripts": "^2.16.2",
     "hubot-shipit": "^0.2.0",
-    "hubot-slack": "^3.4.2"
+    "hubot-slack": "^3.4.2",
+    "todo": "../todo"
   },
   "engines": {
     "node": "0.10.x"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:tmsmk517/intro-curriculum-3008.git",
+  "license": "MIT"
 }
