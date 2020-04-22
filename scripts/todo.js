@@ -30,6 +30,7 @@ module.exports = (robot) => {
       msg.send('(TODOはありません)');
     } else {
       msg.send(list.join('\n'));
+      
     }
   });
   robot.respond(/donelist/i, (msg) => {
