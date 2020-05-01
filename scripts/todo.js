@@ -6,6 +6,8 @@
 //   ボット名 del      - TODO を消す
 //   ボット名 list     - TODO の一覧表示
 //   ボット名 donelist - 完了した TODO の一覧表示
+
+
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
@@ -25,9 +27,20 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
+		if(!todo.list()[0]){
+			msg.send("(TODOはありません)")
+		};
 		msg.send(todo.list().join('\n'));
 	});
 	robot.respond(/donelist/i, (msg) => {
+		if(!todo.donelist()[0]){
+			msg.send("(完了したTODOはありません)")
+		};
 		msg.send(todo.donelist().join('\n'));
 	});
 };
+//console.log(todo.list()); →hubot-todo> []と表示
+//console.log(todo.list);　→[Function: list]と表示される
+
+
+
