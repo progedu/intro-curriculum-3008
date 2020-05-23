@@ -11,23 +11,42 @@ const todo = require('todo');
 module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		if (todo.todo(task)) {
+			msg.send('追加しました: ' + task);
+		} else {
+			msg.send('(既に同じ名前の TODO が存在します。)');
+		}
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		if (todo.done(task)) {
+			msg.send('完了にしました: ' + task);
+		} else {
+			msg.send('(指定した TODO は存在しないか、既に完了しています。)');
+		}
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.del(task);
-		msg.send('削除しました: ' + task);
+		if (todo.del(task)) {
+			msg.send('削除しました: ' + task);
+		} else {
+			msg.send('(指定した TODO は存在しません。)');
+		}
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const list = todo.list();
+		if (list.length === 0 ) {
+			msg.send('(TODO はありません。)');
+		} else {
+			msg.send(list.join('\n'));
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('(完了した TODO はありません。)');
+		} else {
+			msg.send(donelist.join('\n'));
+		}
 	});
 };
