@@ -26,8 +26,14 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		msg.send(todo.list().join('\n'));
+		if (todo.list() == false){
+			msg.send('(TODOがありません)')
+		}
 	});
 	robot.respond(/donelist/i, (msg) => {
 		msg.send(todo.donelist().join('\n'));
+		if (todo.donelist() == false){
+			msg.send('(完了したTODOはありません)')
+		}
 	});
 };
