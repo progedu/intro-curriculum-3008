@@ -25,9 +25,20 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const res = todo.list().join('\n');
+		if (res) {
+			msg.send(res);
+		} else {
+			msg.send(`TODOはありません`);
+		}
+		
 	});
 	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+		const res = todo.donelist().join('\n');
+		if (res) {
+			msg.send(res);
+		} else {
+			msg.send(`完了したTODOはありません`);
+		}
 	});
 };
