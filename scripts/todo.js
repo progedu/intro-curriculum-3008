@@ -26,15 +26,17 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		const todoList = todo.list().join('\n');
-		if (todoList) {
+		if (todoList !== "") {
+            console.log('todoList: ' + todoList);
 			msg.send(todoList);
 		} else {
 			msg.send('(TODOはありません)');
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		todoDonelist = todo.donelist().join('\n');
-		if (todoDonelist) {
+		const todoDonelist = todo.donelist().join('\n');
+		if (todoDonelist !== "") {
+            console.log('todoDonelist: ' + todoDonelist);
 			msg.send(todoDonelist);
 		} else {
 			msg.send('(完了したTODOはありません)');
