@@ -25,20 +25,24 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		if (todo.list().length === 0) {
+		// todo.list()が重い処理の可能性もあるので、何度も呼び出さなくて済むようにする
+		const list = todo.list();
+		if (list === 0) {
 			// TODOが一つもない場合は以下のメッセージを返す
 			msg.send('(TODOはありません)');
 		} else {
 			// join()関数は配列の全ての要素を与えられた文字列でつないで1つの文字列にする
-			msg.send(todo.list().join('\n'));
+			msg.send(list.join('\n'));
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		if (todo.donelist().length === 0) {
+		// todo.donelist()が重い処理の可能性もあるので、何度も呼び出さなくて済むようにする
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
 			// 完了したTODOが一つもない場合は以下のメッセージを返す
 			msg.send('(完了したTODOはありません)');
 		} else {
-			msg.send(todo.donelist().join('\n'));
+			msg.send(donelist.join('\n'));
 		}
 	});
 };
