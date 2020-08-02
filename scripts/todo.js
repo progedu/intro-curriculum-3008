@@ -1,6 +1,7 @@
 // Description:
 //   TODO を管理することができるボットです
 // Commands:
+//   ボット名 wake     - bot起動確認
 //   ボット名 todo     - TODO を作成
 //   ボット名 done     - TODO を完了にする
 //   ボット名 del      - TODO を消す
@@ -9,25 +10,38 @@
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
-	robot.respond(/todo (.+)/i, (msg) => {
+	robot.hear(/wake/i, msg => {
+		msg.send(`bot起動しました`)
+	})
+	robot.hear(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
-		msg.send('追加しました: ' + task);
+		msg.send(`追加しました: ${task}`);
 	});
-	robot.respond(/done (.+)/i, (msg) => {
+	robot.hear(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		msg.send(`完了にしました: ${task}`);
 	});
-	robot.respond(/del (.+)/i, (msg) => {
+	robot.hear(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
 		todo.del(task);
-		msg.send('削除しました: ' + task);
+		msg.send(`削除しました: ${task}`);
 	});
-	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+	robot.hear(/list/i, (msg) => {
+		const list = todo.list();
+		if (list.length === 0) {
+			msg.send('(TODOはありません)')
+		} else {
+			msg.send(list.join('\n'));
+		}
 	});
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+	robot.hear(/donelist/i, (msg) => {
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('(完了したTODOはありません)')
+		} else {
+			msg.send(donelist.join('\n'));
+		}
 	});
 };
