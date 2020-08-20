@@ -8,6 +8,8 @@
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
 const todo = require('todo');
+const { list } = require('../../hubot-todo/node_modules/todo');
+const { donelist } = require('../../hubot-todo/node_modules/todo');
 module.exports = (robot) => {
 	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
@@ -26,8 +28,12 @@ module.exports = (robot) => {
 	});
 	robot.respond(/list/i, (msg) => {
 		msg.send(todo.list().join('\n'));
+		if(list.length === 0)
+			msg.send('TODOはありません');
 	});
 	robot.respond(/donelist/i, (msg) => {
 		msg.send(todo.donelist().join('\n'));
+		if(donelist.length === 0)
+			msg.send('完了したTODOはありません');
 	});
 };
