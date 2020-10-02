@@ -26,13 +26,18 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		if (list == list)
-		msg.send(todo.list().join('\n'));
-		else msg.send('TODO はありません');
+		const list = todo.list();
+		if (list.length !== 0)
+		{msg.send(todo.list().join('\n'));
+	} else {
+		msg.send('TODO はありません');
+	}
 	});
 	robot.respond(/donelist/i, (msg) => {
-		if (donelist == donelist)
-		msg.send(todo.donelist().join('\n'));
-		else msg.send('完了したTODO はありません');
+		const donelist = todo.donelist();
+		if (donelist !== 0) {
+		 msg.send(todo.donelist().join('\n'));
+		}else {msg.send('完了したTODO はありません');
+	} 
 	});
 };
