@@ -42,7 +42,7 @@ module.exports = robot => {
 	robot.respond(/list/i, msg => {
 		const list = todo.list();
 		if (list.length === 0) {
-			msg.send('TODOがありません');
+			msg.send('TODOが一つもありません');
 		} else {
 			msg.send(todo.list().join('\n'));
 		}
@@ -50,7 +50,7 @@ module.exports = robot => {
 	robot.respond(/donelist/i, msg => {
 		const donelist = todo.donelist();
 		if (donelist.length === 0) {
-			msg.send('完了したTODOはありません')
+			msg.send('え、完了したTODOはありませんよ？')
 		} else {
 			msg.send(todo.donelist().join('\n'));
 		}
