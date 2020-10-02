@@ -8,7 +8,7 @@
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
 const todo = require('todo');
-module.exports = (robot) => {
+module.exports = robot => {
 	robot.respond(/todo (.+)/i, msg => {
 		const task = msg.match[1].trim();
 		todo.todo(task);
@@ -29,12 +29,15 @@ module.exports = (robot) => {
 		if (list.length === 0) {
 			msg.send('(TODOはありません)');
 		} else {
-			msg.send(todo.list().join('\n'));
+			msg.send(list.join('\n'));
 		}
-		
-		msg.send(todo.list().join('\n'));
 	});
 	robot.respond(/donelist/i, msg => {
-		msg.send(todo.donelist().join('\n'));
+		const donelist = todo.donelist();
+		if (donelist.length === 0) {
+			msg.send('(完了したTODOはありません)');
+		} else {
+		msg.send(donelist.join('\n'));
+		}
 	});
 };
