@@ -1,7 +1,7 @@
 // Description:
 //   TODO を管理することができるボットです
 // Commands:
-//   ボット名 add      - TODO を作成
+//   ボット名 todo     - TODO を作成
 //   ボット名 done     - TODO を完了にする
 //   ボット名 del      - TODO を消す
 //   ボット名 list     - TODO の一覧表示
@@ -9,9 +9,9 @@
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
-	robot.respond(/add (.+)/i, (msg) => {
+	robot.respond(/todo (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.add(task);
+		todo.todo(task);
 		msg.send('追加しました: ' + task);
 	});
 	robot.respond(/done (.+)/i, (msg) => {
@@ -25,9 +25,19 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
+		const todoList = todo.list();
+		if (todoList.length !== 0) {
+			msg.send(todoList.join('\n'));
+		} else {
+			msg.send('TODOはありません。');
+		}
 	});
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
+	robot.respond(/doneList/i, (msg) => {
+		const todoDoneList = todo.doneList();
+		if (todoDoneList.length !== 0) {
+			msg.send(todoDoneList.join('\n'));
+		} else {
+			msg.send('完了したTODOはありません。');
+		}
 	});
 };
