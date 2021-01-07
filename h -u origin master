@@ -1,0 +1,89 @@
+[33mcommit bba1c5597333917058606803012c211e56e5c354[m[33m ([m[1;36mHEAD -> [m[1;32mmaster-2019[m[33m)[m
+Author: Ponta <bayashiko.daiki@gmail.com>
+Date:   Thu Jan 7 15:36:07 2021 +0900
+
+    amend blank case
+
+[33mcommit 1b32195c5310ed64bd3ea173efdd33256acb355f[m[33m ([m[1;31morigin/master-2019[m[33m)[m
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Tue Mar 12 21:19:37 2019 +0900
+
+    .gitignore に *.log を追記
+
+[33mcommit 61d366955361bebdc681c567215d14e1da678c4a[m
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Tue Mar 12 21:16:45 2019 +0900
+
+    .gitignore に *.log を追記
+
+[33mcommit 25a0c52562624c9611cb54b64d6147d79ac7d268[m
+Merge: b76d8b5 1f6c130
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Tue Feb 19 18:39:06 2019 +0900
+
+    Merge pull request #571 from 7ma7X/master-2019
+    
+    npm -> yarn
+
+[33mcommit 1f6c130eb06576a0dd4b3cb1d00abf4113e75fa9[m
+Author: K Sugimoto <36184621+7ma7X@users.noreply.github.com>
+Date:   Tue Feb 19 11:33:35 2019 +0900
+
+    npm -> yarn
+
+[33mcommit b76d8b5cbaeeaac0b36863de6a6de743f72f6834[m[33m ([m[1;31morigin/master-2018[m[33m)[m
+Merge: 158d52f 45a145c
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Thu Aug 23 16:39:42 2018 +0900
+
+    Merge pull request #429 from shun1110/update-hubot-3.1.1
+    
+    update hubot
+
+[33mcommit 45a145ce1daee26a7456cb7a2cdf783e3236797c[m
+Author: Shun Nishimura <n.shun1110@gmail.com>
+Date:   Thu Aug 23 16:13:05 2018 +0900
+
+    update hubot
+
+[33mcommit 158d52f33303f8aba34bac8389e9af8d352d61f4[m
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Fri Jan 19 18:55:36 2018 +0900
+
+    hubot のアップデート
+
+[33mcommit c1aea61c528fc5e2889c9bec11a615cc14b57f11[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: e5a8305 b7102de
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Fri Jun 3 15:35:07 2016 +0900
+
+    Merge pull request #4 from y-takashina/master
+    
+    let -> const
+
+[33mcommit e5a8305841ec6e965554ec3abf1f39679cf639b7[m
+Merge: eec69aa ff8fe55
+Author: DDRAGON <davide.0829@gmail.com>
+Date:   Fri Jun 3 15:34:25 2016 +0900
+
+    Merge pull request #3 from y-takashina/patch-1
+    
+    Delete jsconfig.json
+
+[33mcommit b7102def82fe43faec557d1798ab706edce397ee[m
+Author: Yuya Takashina <yuya_takashina@dwango.co.jp>
+Date:   Wed May 25 17:27:29 2016 +0900
+
+    let -> const
+
+[33mcommit ff8fe558e53568221a40d30a44b318895be56da7[m
+Author: y-takashina <takashina2051@gmail.com>
+Date:   Thu May 12 13:20:06 2016 +0900
+
+    Delete jsconfig.json
+
+[33mcommit eec69aa5f9f29d7cf7bd9a7952c72c29ea305c83[m
+Author: Soichiro-Yoshimura <soichiro_yoshimura@dwango.co.jp>
+Date:   Tue Dec 15 17:06:33 2015 +0900
+
+    first commit
