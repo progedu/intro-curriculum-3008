@@ -24,10 +24,20 @@ module.exports = (robot) => {
 		todo.del(task);
 		msg.send('削除しました: ' + task);
 	});
-	robot.respond(/list/i, (msg) => {
-		msg.send(todo.list().join('\n'));
-	});
-	robot.respond(/donelist/i, (msg) => {
-		msg.send(todo.donelist().join('\n'));
-	});
+	robot.respond(/list/i, msg => {
+        const answer = todo.list().join('\n');
+        if(answer === '') {
+            msg.send('(TODO はありません)');
+        } else {
+			msg.send(answer);
+		}        
+    });
+    robot.respond(/donelist/i, msg => {
+        const answer = todo.donelist().join('\n');
+        if(answer === '') {
+            msg.send('(完了したTODO はありません)');
+        } else {
+			msg.send(answer);
+		}        
+    });
 };
