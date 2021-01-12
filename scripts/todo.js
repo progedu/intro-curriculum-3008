@@ -11,33 +11,48 @@ const todo = require('todo');
 module.exports = (robot) => {
 	robot.respond(/add (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.add(task);
-		msg.send('追加しました: ' + task);
+		const tasks = todo.list();{
+		if(tasks.indexOf(task) !== -1){
+			msg.send('そのタスクは既に登録されています');
+		} else {
+			todo.add(task);
+			msg.send('追加しました: ' + task);
+		}
 	});
 	robot.respond(/done (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.done(task);
-		msg.send('完了にしました: ' + task);
+		const tasks = todo.list();
+		if(tasks.indexOf(task) === -1){
+			msg.send('そのタスクは登録されていません');
+		} else {
+			todo.done(task);
+			msg.send('完了にしました: ' + task);
+		}
 	});
 	robot.respond(/del (.+)/i, (msg) => {
 		const task = msg.match[1].trim();
-		todo.del(task);
-		msg.send('削除しました: ' + task);
+		const tasks = todo.list();
+		if(tasks.indexOf(task) === -1){
+			msg.send('そのタスクは登録されていません');
+		} else {
+			todo.del(task);
+			msg.send('削除しました: ' + task);
+		}
 	});
 	robot.respond(/list/i, (msg) => {
 		const list = todo.list();
 		if (list.length === 0) {
-			msg.send('タスクはありません')
+			msg.send('タスクは１つもありません ^_^')
 		} else {
-			msg.send(todo.list().join('\n'));
+			msg.send(('登録されたタスク一覧: ') + todo.list().join('\n'));
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
 		const donelist = todo.donelist();
 		if (donelist.length === 0) {
-			msg.send('完了したタスクはありません')
+			msg.send('まだ完了したタスクはありません T_T')
 		} else {
-			msg.send(todo.donelist().join('\n'));
+			msg.send(('完了したタスク一覧: ') + todo.donelist().join('\n'));
 		}
 	});
 };
