@@ -27,8 +27,9 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
+		const list = todo.list();
 		// TODOの一覧が存在しない場合
-		if(todo.list().length == 0){
+		if(list.length === 0){
 			msg.send("(TODOはありません)");
 		// TODOの一覧が存在する場合
 		}else{
@@ -36,8 +37,9 @@ module.exports = (robot) => {
 		}
 	});
 	robot.respond(/donelist/i, (msg) => {
+		const donelist = todo.donelist();
 		// 完了したTODOの一覧が存在しない場合
-		if(todo.donelist().length == 0){
+		if(donelist.length === 0){
 			msg.send("(完了したTODOはありません)");
 		// 完了したTODOの一覧が存在する場合
 		}else{
