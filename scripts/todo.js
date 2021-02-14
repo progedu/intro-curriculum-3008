@@ -25,11 +25,11 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
-    const text = todo.list().join('\n') === '' ? '(TODOはありません)' : todo.list().join('\n');
+    const text = todo.list().length == 0 ? '(TODOはありません)' : todo.list().join('\n');
 		msg.send(text);
 	});
 	robot.respond(/donelist/i, (msg) => {
-    const text = todo.donelist().join('\n') === '' ? '(完了したTODOはありません)' : todo.donelist().join('\n');
+    const text = todo.donelist().length == 0 ? '(TODOはありません)' : todo.donelist().join('\n');
 		msg.send(text);
 	});
 };
