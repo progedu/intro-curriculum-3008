@@ -6,8 +6,6 @@
 //   ボット名 del      - TODO を消す
 //   ボット名 list     - TODO の一覧表示
 //   ボット名 donelist - 完了した TODO の一覧表示
-//	ボット名 nothingtodo - TODO はありません
-//	ボット名 nothingtocompletedtodo - 完了した TODO はありません
 'use strict';
 const todo = require('todo');
 module.exports = (robot) => {
@@ -27,6 +25,7 @@ module.exports = (robot) => {
 		msg.send('削除しました: ' + task);
 	});
 	robot.respond(/list/i, (msg) => {
+		const list = todo.list();
 		if(list.length === 0){
 			msg.send('(TODO はありません)');
 		}else{
