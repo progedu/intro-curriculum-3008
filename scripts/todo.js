@@ -26,10 +26,10 @@ module.exports = robot => {
   });
 
 	robot.respond(/list/i, (msg) => {
-		if (todo.list().lrength !== 0){
-			msg.send("タスクはありません");
-		}　else{
+		if (todo.list().lrength){
 			msg.send(todo.list().join('\n'));
+		}　else{
+			msg.send("タスクはありません");
 		}
 	});
 	
