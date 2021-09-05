@@ -18,13 +18,13 @@
     "hubot-scripts": "^2.16.2",
     "hubot-shipit": "^0.2.0",
     "hubot-slack": "^4.0.0",
-    "snyk": "^1.316.1"
+    "@snyk/protect": "latest"
   },
   "engines": {
     "node": "0.10.x"
   },
   "scripts": {
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepublish": "npm run snyk-protect"
   },
   "snyk": true
