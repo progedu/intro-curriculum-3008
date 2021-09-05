@@ -9,10 +9,4 @@ patch:
     - hubot-slack > @slack/client > lodash:
         patched: '2020-05-01T05:34:39.335Z'
   'npm:debug:20170905':
-    - hubot > express > connect > connect-timeout > debug:
-        patched: '2021-09-03T22:03:11.982Z'
-  'npm:ms:20170412':
-    - hubot > express > connect > connect-timeout > ms:
-        patched: '2021-09-03T22:03:11.982Z'
-    - hubot > express > connect > connect-timeout > debug > ms:
-        patched: '2021-09-03T22:03:11.982Z'
+
