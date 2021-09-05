@@ -9,11 +9,4 @@ patch:
     - hubot-slack > @slack/client > lodash:
         patched: '2020-05-01T05:34:39.335Z'
   'npm:debug:20170905':
-    - hubot > express > connect > serve-index > debug:
-        patched: '2021-09-05T02:31:55.833Z'
-  'npm:ms:20170412':
-    - hubot > express > connect > serve-index > debug > ms:
-        patched: '2021-09-05T02:31:55.833Z'
-  'npm:negotiator:20160616':
-    - hubot > express > connect > serve-index > accepts > negotiator:
-        patched: '2021-09-05T02:31:55.833Z'
+
