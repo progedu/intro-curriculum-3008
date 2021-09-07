@@ -10,7 +10,6 @@
 const todo = require('todo');
 module.exports = (robot) => {
 	robot.respond(/add (.+)/i, (msg) => {
-		console.log(msg);
 		const task = msg.match[1].trim();
 		todo.add(task);
 		msg.send('追加しました: ' + task);
